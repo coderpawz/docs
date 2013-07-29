@@ -37,12 +37,12 @@
 <a href="#wait-and-callback-url">Wait and Callback URL</a>
 
 <ul>
-<li><a href="#wait-option">Wait Option</a></li>
+<li><a href="#wait">Wait Option</a></li>
 <li><a href="#callback-url">Callback URL</a></li>
 </ul>
 </li>
-<li><a href="#image-url">Usage - Image URL</a></li>
 <li><a href="#image-upload">Usage - Image Upload</a></li>
+<li><a href="#image-url">Usage - Image URL</a></li>
 <li><a href="#lossy-optimization">Lossy Optimization</a></li>
 <li><a href="#image-resizing">Image Resizing</a></li>
 <li><a href="#webp-compression">WebP Compression</a></li>
@@ -129,7 +129,7 @@
 </pre></div>
 
 <h2>
-<a name="direct-upload" class="anchor" href="#direct-upload"><span class="octicon octicon-link"></span></a>Direct Upload</h2>
+<a name="image-upload" class="anchor" href="#image-upload"><span class="octicon octicon-link"></span></a>Image Upload</h2>
 
 <p>Type: <code>POST</code> 
 URL: <code>https://api.kraken.io/upload</code></p>
@@ -148,7 +148,7 @@ URL: <code>https://api.kraken.io/upload</code></p>
 <h2>
 <a name="image-url" class="anchor" href="#image-url"><span class="octicon octicon-link"></span></a>Image URL</h2>
 
-<p>Type: <code>POST</code> 
+<p>Type: <code>POST</code>
 URL: <code>https://api.kraken.io/url</code></p>
 
 <p>If you want to feed Kraken with URLs to your images add a <code>url</code> property along with an <code>auth</code> section in your request JSON and post it to: <a href="https://api.kraken.io/url">https://api.kraken.io/url</a>. Be sure to add a <code>wait</code> or <code>calback_url</code> flag:</p>
