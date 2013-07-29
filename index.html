@@ -30,6 +30,25 @@
 
 <p>To plug into the power of Kraken API you need to sign up for Kraken API services and obtain your unique API Key and API Secret. You will find those in your Account under the API Credentials section. Once you have set-up your account, you can start using Kraken API in your applications.</p>
 
+<h2>Optimization Process</h2>
+
+<strong>JPEG Images</strong>
+
+<p>For JPEGs Kraken does a vast array of optimizations. It strips all metadata found in a given image, optimizes Huffman tables, converts image to progressive format and tries a variety of custom progressive scans to find best structure per image.</p>
+
+<p>For lossy JPEG optimizations we additionaly use imgmin library by Ryan Flynn which generates multiple copies of the input image using different quality settings. Then it intelligently picks the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.</p>
+
+<strong>PNG Images</strong>
+
+<p>Kraken dynamically chooses best compression and optimization algorithms and their optimal settings for a given PNG to ensure an outstanding image quality with the minimum file weight.</p>
+
+<strong>GIF Images</strong>
+
+<p>Since Kraken supports GIF to PNG8 conversion and optimization (because PNGs are almost always superior to GIFs) your static GIF images will be returned as optimized PNG files. In this case you have to change file extensions in your websites or applications.</p>
+
+<p>Optimized GIF animations will always be returned as standard animation GIF files.</p>
+
+
 <h2>How to Use</h2>
 
 <p>You can optimize your images in two ways - by <strong>providing an URL</strong> of the image you want to optimize or by <strong>uploading an image file</strong> directly to Kraken API.</p>
@@ -81,7 +100,7 @@
 <h2>Direct Upload</h2>
 
 <p>Type: <code>POST</code><br>
-URL: <code>https://api.kraken.io/upload</code></p>
+URL: <code>https://api.kraken.io/v1/upload</code></p>
 
 <p>Kraken allows you to easily upload your images directly to the API. To do so you have to <code>POST</code> an image file along with an <code>auth</code> JSON object to: <code>https://api.kraken.io/upload</code>. Be sure to add a <code>wait</code> or <code>calback_url</code> flag:</p>
 
@@ -97,7 +116,7 @@ URL: <code>https://api.kraken.io/upload</code></p>
 <h2>Image URL</h2>
 
 <p>Type: <code>POST</code><br>
-URL: <code>https://api.kraken.io/url</code></p>
+URL: <code>https://api.kraken.io/v1/url</code></p>
 
 <p>If you want to feed Kraken with URLs to your images add a <code>url</code> property along with an <code>auth</code> section in your request JSON and post it to: <code>https://api.kraken.io/url</code>. Be sure to add a <code>wait</code> or <code>calback_url</code> flag:</p>
 
@@ -246,6 +265,11 @@ PNG images will be converted from 24-bit to paletted 8-bit with full alpha chann
 
 <p><strong>Lossy Optimization of JPEG Images</strong>
 For lossy JPEG optimization Kraken will generate multiple copies of the input image using different quality settings. It will then pick the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.</p>
+
+<h2>WebP Compression</h2>
+<p>WebP is a new image format introduced by Google in 2010 which supports both lossy and lossless compression. According to Google, WebP lossless images are <strong>26% smaller</strong> in size compared to PNGs and WebP lossy images are <strong>25-34% smaller</strong> in size compared to JPEG images.</p>
+
+<p>To recompress your PNG or JPEG files into WebP format simply set <code>"webp": true</code> flag in your request JSON. You can also optionally set <code>"lossy": true</code> flag to leverage WebP's lossy compression:</p>
 
 <h2>Amazon S3 and Rackspace Cloud Files</h2>
 
