@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -16,40 +17,74 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Kraken.io API Reference</h1>
-
+        <h1>Docs</h1>
+        <p>API Reference and Developer Documentation for Kraken.io</p>
+        <p class="view"><a href="https://github.com/kraken-io/docs">View the Project on GitHub <small>kraken-io/docs</small></a></p>
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/kraken-io/kraken-php">Kraken for PHP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/kraken-io/kraken-node">Kraken for Node</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/kraken-io/kraken-ruby">Kraken for Ruby</a></li>
+          <li><a href="https://github.com/kraken-io/docs/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kraken-io/docs/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kraken-io/docs">View On <strong>GitHub</strong></a></li>
         </ul>
-
       </header>
       <section>
-        <h2>Getting Started</h2>
+        <ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#optimization-process">Optimization Process</a></li>
+<li><a href="#downloading-images">Downloading Images</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#how-to-use">How To Use</a></li>
+<li>
+<a href="#wait-and-callback-url">Wait and Callback URL</a>
+
+<ul>
+<li><a href="#wait-option">Wait Option</a></li>
+<li><a href="#callback-url">Callback URL</a></li>
+</ul>
+</li>
+<li><a href="#image-url">Usage - Image URL</a></li>
+<li><a href="#image-upload">Usage - Image Upload</a></li>
+<li><a href="#lossy-optimization">Lossy Optimization</a></li>
+<li><a href="#image-resizing">Image Resizing</a></li>
+<li><a href="#webp-compression">WebP Compression</a></li>
+<li>
+<a href="#amazon-s3-and-rackspace-cloud-files">Amazon S3 and Rackspace Cloud Files Integration</a>
+
+<ul>
+<li><a href="#amazon-s3">Amazon S3</a></li>
+<li><a href="#rackspace-cloud-files">Rackspace Cloud Files</a></li>
+</ul>
+</li>
+</ul><h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
 
 <p>To plug into the power of Kraken API you need to sign up for Kraken API services and obtain your unique API Key and API Secret. You will find those in your Account under the API Credentials section. Once you have set-up your account, you can start using Kraken API in your applications.</p>
 
-<h2>Optimization Process</h2>
+<h2>
+<a name="optimization-process" class="anchor" href="#optimization-process"><span class="octicon octicon-link"></span></a>Optimization Process</h2>
 
-<strong>JPEG Images</strong>
+<p><strong>JPEG Images</strong></p>
 
 <p>For JPEGs Kraken does a vast array of optimizations. It strips all metadata found in a given image, optimizes Huffman tables, converts image to progressive format and tries a variety of custom progressive scans to find best structure per image.</p>
 
-<p>For lossy JPEG optimizations we additionaly use imgmin library by Ryan Flynn which generates multiple copies of the input image using different quality settings. Then it intelligently picks the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.</p>
+<p>For lossy JPEG optimizations we additionaly use <code>imgmin</code> library by Ryan Flynn which generates multiple copies of the input image using different quality settings. Then it intelligently picks the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.</p>
 
-<strong>PNG Images</strong>
+<p><strong>PNG Images</strong></p>
 
 <p>Kraken dynamically chooses best compression and optimization algorithms and their optimal settings for a given PNG to ensure an outstanding image quality with the minimum file weight.</p>
 
-<strong>GIF Images</strong>
+<p><strong>GIF Images</strong></p>
 
 <p>Since Kraken supports GIF to PNG8 conversion and optimization (because PNGs are almost always superior to GIFs) your static GIF images will be returned as optimized PNG files. In this case you have to change file extensions in your websites or applications.</p>
 
 <p>Optimized GIF animations will always be returned as standard animation GIF files.</p>
 
+<h2>
+<a name="downloading-images" class="anchor" href="#downloading-images"><span class="octicon octicon-link"></span></a>Downloading Images</h2>
 
-<h2>How to Use</h2>
+<p>Remember - never link to optimized images offered to download. You have to download them first, and then replace them in your websites or applications. Optimized images are available on our servers for one hour only.</p>
+
+<h2>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to Use</h2>
 
 <p>You can optimize your images in two ways - by <strong>providing an URL</strong> of the image you want to optimize or by <strong>uploading an image file</strong> directly to Kraken API.</p>
 
@@ -93,14 +128,11 @@
 <span class="p">}</span>
 </pre></div>
 
-<h2>Downloading Images</h2>
+<h2>
+<a name="direct-upload" class="anchor" href="#direct-upload"><span class="octicon octicon-link"></span></a>Direct Upload</h2>
 
-<p>Remember - never link to optimized images offered to download. You have to download them first, and then replace them in your websites or applications. Optimized images are available on our servers for one hour only.</p>
-
-<h2>Direct Upload</h2>
-
-<p>Type: <code>POST</code><br>
-URL: <code>https://api.kraken.io/v1/upload</code></p>
+<p>Type: <code>POST</code> 
+URL: <code>https://api.kraken.io/upload</code></p>
 
 <p>Kraken allows you to easily upload your images directly to the API. To do so you have to <code>POST</code> an image file along with an <code>auth</code> JSON object to: <code>https://api.kraken.io/upload</code>. Be sure to add a <code>wait</code> or <code>calback_url</code> flag:</p>
 
@@ -113,12 +145,13 @@ URL: <code>https://api.kraken.io/v1/upload</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h2>Image URL</h2>
+<h2>
+<a name="image-url" class="anchor" href="#image-url"><span class="octicon octicon-link"></span></a>Image URL</h2>
 
-<p>Type: <code>POST</code><br>
-URL: <code>https://api.kraken.io/v1/url</code></p>
+<p>Type: <code>POST</code> 
+URL: <code>https://api.kraken.io/url</code></p>
 
-<p>If you want to feed Kraken with URLs to your images add a <code>url</code> property along with an <code>auth</code> section in your request JSON and post it to: <code>https://api.kraken.io/url</code>. Be sure to add a <code>wait</code> or <code>calback_url</code> flag:</p>
+<p>If you want to feed Kraken with URLs to your images add a <code>url</code> property along with an <code>auth</code> section in your request JSON and post it to: <a href="https://api.kraken.io/url">https://api.kraken.io/url</a>. Be sure to add a <code>wait</code> or <code>calback_url</code> flag:</p>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">"auth"</span><span class="o">:</span> <span class="p">{</span>
@@ -143,11 +176,13 @@ URL: <code>https://api.kraken.io/v1/url</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h2>Wait and Callback URL</h2>
+<h2>
+<a name="wait-and-callback-url" class="anchor" href="#wait-and-callback-url"><span class="octicon octicon-link"></span></a>Wait and Callback URL</h2>
 
 <p>Kraken gives you two options for fetching optimization results. With the <code>wait</code> option set the results will be returned in the response body. With the <code>callback_url</code> the results will be posted to the URL specified in your request.</p>
 
-<h3>Wait</h3>
+<h3>
+<a name="wait" class="anchor" href="#wait"><span class="octicon octicon-link"></span></a>Wait</h3>
 
 <p>With the wait option turned on for every request to the API, the connection will be held open until the image has been optimized. Once this is done you will get an immediate response with a JSON object containing your optimization results. To use this option simply set the <code>"wait":true</code> property in your request.</p>
 
@@ -175,7 +210,8 @@ URL: <code>https://api.kraken.io/v1/url</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h3>Callback URL</h3>
+<h3>
+<a name="callback-url" class="anchor" href="#callback-url"><span class="octicon octicon-link"></span></a>Callback URL</h3>
 
 <p>With the Callback URL the HTTPS connection will be terminated immediately and a unique <code>id</code> will be returned in the response body. After the optimization is over Kraken will POST a message to the <code>callback_url</code> specified in your request. The ID in the response will reflect the ID in the results posted to your Callback URL.</p>
 
@@ -211,7 +247,8 @@ URL: <code>https://api.kraken.io/v1/url</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h2>Image Resizing</h2>
+<h2>
+<a name="image-resizing" class="anchor" href="#image-resizing"><span class="octicon octicon-link"></span></a>Image Resizing</h2>
 
 <p>Image resizing option is great for creating thumbnails or preview images in your applications. Kraken will first resize the given image and then optimize it with its vast array of optimization algorithms. The resize option needs a few parameters to be passed, such as the desired <code>width</code> and/or <code>height</code>, as well as a mandatory <code>strategy</code> property. For example:</p>
 
@@ -243,7 +280,8 @@ URL: <code>https://api.kraken.io/v1/url</code></p>
 <code>auto</code> - The best strategy will be selected for a given image according to its aspect ratio.</li>
 <li>
 <code>crop</code> - This option will crop your images to the exact size you specify with no distortion.</li>
-</ul><h2>Lossy Optimization</h2>
+</ul><h2>
+<a name="lossy-optimization" class="anchor" href="#lossy-optimization"><span class="octicon octicon-link"></span></a>Lossy Optimization</h2>
 
 <p>If you decide to sacrifice just a small amount of image quality (which in most cases is unnoticeable to the human eye), you will be able to save up to <strong>90%</strong> of the initial file weight. Lossy optimization will give you outstanding results with just a fraction of image quality loss.</p>
 
@@ -264,18 +302,34 @@ URL: <code>https://api.kraken.io/v1/url</code></p>
 PNG images will be converted from 24-bit to paletted 8-bit with full alpha channel. This process is called PNG quantization in RGBA format and means the amount of colours used in an image will be reduced to 256 while maintaining all information about alpha transparency.</p>
 
 <p><strong>Lossy Optimization of JPEG Images</strong>
-For lossy JPEG optimization Kraken will generate multiple copies of the input image using different quality settings. It will then pick the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.</p>
+For lossy JPEG optimizations we use <a href="https://github.com/rflynn/imgmin">imgmin</a> library by Ryan Flynn which generates multiple copies of the input image using different quality settings. Then it intelligently picks the one with the best quality to size ratio. This ensures your JPEG image will be at the smallest size with the highest possible quality, without the need for a human to select the optimal image.</p>
 
-<h2>WebP Compression</h2>
-<p>WebP is a new image format introduced by Google in 2010 which supports both lossy and lossless compression. According to Google, WebP lossless images are <strong>26% smaller</strong> in size compared to PNGs and WebP lossy images are <strong>25-34% smaller</strong> in size compared to JPEG images.</p>
+<h2>
+<a name="webp-compression" class="anchor" href="#webp-compression"><span class="octicon octicon-link"></span></a>WebP Compression</h2>
+
+<p>WebP is a new image format introduced by Google in 2010 which supports both lossy and lossless compression. According to <a href="https://developers.google.com/speed/webp/">Google</a>, WebP lossless images are <strong>26% smaller</strong> in size compared to PNGs and WebP lossy images are <strong>25-34% smaller</strong> in size compared to JPEG images.</p>
 
 <p>To recompress your PNG or JPEG files into WebP format simply set <code>"webp": true</code> flag in your request JSON. You can also optionally set <code>"lossy": true</code> flag to leverage WebP's lossy compression:</p>
 
-<h2>Amazon S3 and Rackspace Cloud Files</h2>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">"auth"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"api_key"</span><span class="o">:</span> <span class="s2">"your-api-key"</span><span class="p">,</span>
+    <span class="s2">"api_secret"</span><span class="o">:</span> <span class="s2">"your-api-secret"</span>
+  <span class="p">},</span>
+  <span class="s2">"url"</span><span class="o">:</span> <span class="s2">"http://awesome-website.com/images/header.jpg"</span><span class="p">,</span>
+  <span class="s2">"wait"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"webp"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">"lossy"</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="amazon-s3-and-rackspace-cloud-files" class="anchor" href="#amazon-s3-and-rackspace-cloud-files"><span class="octicon octicon-link"></span></a>Amazon S3 and Rackspace Cloud Files</h2>
 
 <p>Kraken API allows you to store optimized images directly in your S3 bucket or Cloud Files container. With just a few additional parameters your optimized images will be pushed to your external storage in no time.</p>
 
-<h3>Amazon S3</h3>
+<h3>
+<a name="amazon-s3" class="anchor" href="#amazon-s3"><span class="octicon octicon-link"></span></a>Amazon S3</h3>
 
 <p><strong>Mandatory Parameters:</strong></p>
 
@@ -327,7 +381,8 @@ For lossy JPEG optimization Kraken will generate multiple copies of the input im
 <pre><code>http://s3.amazonaws.com/assets/images/layout/header.jpg
 </code></pre>
 
-<h3>Rackspace Cloud Files</h3>
+<h3>
+<a name="rackspace-cloud-files" class="anchor" href="#rackspace-cloud-files"><span class="octicon octicon-link"></span></a>Rackspace Cloud Files</h3>
 
 <p><strong>Mandatory Parameters:</strong></p>
 
@@ -380,7 +435,11 @@ For lossy JPEG optimization Kraken will generate multiple copies of the input im
 <p>If your container is not CDN-enabled <code>kraked_url</code> will point to the optimized image URL in the Kraken API.</p>
       </section>
     </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/kraken-io">kraken-io</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    
   </body>
 </html>
